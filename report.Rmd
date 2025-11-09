@@ -9,12 +9,12 @@ output:
     code_folding: hide
 ---
 
-This R Notebook provides an interactive analysis of the survey data from 471 university students in Ethiopia. It explores demographics, career exposure, and satisfaction with guidance services.
+This R Notebook provides an interactive visualization and analysis of the survey data from **471 university students in Ethiopia**, using the actual research dataset. It explores demographics, career exposure, and satisfaction with guidance services.
 
-You can click "Code" buttons to show or hide the underlying R code for each section.
+You can click the **"Code"** buttons to show or hide the underlying R code for each section.
 
 ```{r setup, include=FALSE}
-# This chunk sets up our environment
+# This chunk sets up our environment and loads necessary libraries
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 # Load required libraries
@@ -22,3 +22,7 @@ library(ggplot2)
 library(dplyr)
 library(plotly)     # For interactive plots
 library(DT)         # For interactive tables
+library(wordcloud)  # For word clouds
+library(RColorBrewer) 
+library(reshape2)   # For the correlation heatmap
+library(ggrepel)    # For scatter plot labels
