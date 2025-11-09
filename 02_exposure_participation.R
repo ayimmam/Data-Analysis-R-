@@ -1,4 +1,4 @@
-# Plots for the Exposure Participation Analysis section
+# 02_exposure_participation.R
 
 library(ggplot2)
 library(dplyr)
@@ -37,19 +37,17 @@ plot_gpa_exp <- ggplot(avg_gpa_exposure_data, aes(x = Exposures, y = GPA)) +
   geom_line(color = "#00A0B0", size = 1.5) +
   geom_point(color = "#00A0B0", size = 3) +
   geom_hline(aes(yintercept = gpa_mean), linetype = "dashed", color = "red") +
-  geom_text(aes(x = 5.5, y = gpa_mean - 0.01, label = paste("Mean", gpa_mean)), color = "red") +
   geom_hline(aes(yintercept = gpa_median), linetype = "dotted", color = "green") +
-  geom_text(aes(x = 5.5, y = gpa_median + 0.01, label = paste("Median", gpa_median)), color = "green") +
   labs(title = "Avg GPA by Exposures", x = "Exposures", y = "GPA") +
   theme_minimal(base_size = 14) +
-  scale_x_continuous(breaks = 1:6)
+  scale_x_continuous(breaks = unique(avg_gpa_exposure_data$Exposures))
 
 print(plot_gpa_exp)
 
 # --- Plot 5: Top 10 Unis by Avg Exposures (Horizontal Bar Chart) ---
 plot_uni_exp <- ggplot(avg_exp_uni_data, aes(x = University, y = Avg.Exposures)) +
   geom_bar(stat = "identity", fill = "#00A0B0") +
-  geom_text(aes(label = Avg.Exposures), hjust = -0.2) +
+  geom_text(aes(label = round(Avg.Exposures, 2)), hjust = -0.2) +
   labs(title = "Top 10 Unis by Avg Exposures", x = "University", y = "Avg Exposures") +
   coord_flip() +
   theme_minimal(base_size = 14)
