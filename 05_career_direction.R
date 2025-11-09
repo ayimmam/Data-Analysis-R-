@@ -1,3 +1,5 @@
+# 05_career_direction.R
+
 library(ggplot2)
 library(dplyr)
 
@@ -10,7 +12,7 @@ plot_clarity_count <- ggplot(clarity_exposure_count_data, aes(x = Num.Exposures,
   geom_point(color = "#00A0B0", size = 3) +
   labs(title = "Career Clarity vs Exposures", x = "Num Exposures", y = "Career Clarity") +
   theme_minimal(base_size = 14) +
-  scale_x_continuous(breaks = 1:6) +
+  scale_x_continuous(breaks = unique(clarity_exposure_count_data$Num.Exposures)) +
   ylim(1, 5) # Set Y-axis scale from 1 to 5
 
 print(plot_clarity_count)
