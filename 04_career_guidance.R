@@ -1,3 +1,5 @@
+# 04_career_guidance.R
+
 library(ggplot2)
 library(dplyr)
 library(ggrepel) # For non-overlapping labels
@@ -8,7 +10,7 @@ load("reconstructed_data.RData")
 # --- Plot 1: Avg Frequency vs Satisfaction (Bar Chart) ---
 plot_guide_avg <- ggplot(guidance_freq_sat_data, aes(x = Metric, y = Score)) +
   geom_bar(stat = "identity", fill = "#00A0B0") +
-  geom_text(aes(label = Score), vjust = -0.5) +
+  geom_text(aes(label = round(Score, 2)), vjust = -0.5) +
   labs(title = "Avg Frequency vs Satisfaction", x = "Metrics", y = "Score (1-5)") +
   theme_minimal(base_size = 14) +
   ylim(0, 5)
@@ -24,9 +26,9 @@ plot_guide_gpa <- ggplot(guidance_gpa_data, aes(x = GPA.Group, y = Usage.Frequen
 print(plot_guide_gpa)
 
 # --- Plot 3: Usage Freq vs Satisfaction by University (Grouped Horizontal Bar) ---
-plot_guide_uni <- ggplot(guidance_uni_data, aes(x = University, y = Rating, fill = Metric)) +
+plot_guide_uni <- ggplot(guidance_uni_data, aes(x = reorder(University, -Rating), y = Rating, fill = Metric)) +
   geom_bar(stat = "identity", position = position_dodge()) +
-  labs(title = "Usage Freq vs Satisfaction", x = "University", y = "Rating (1-5)") +
+  labs(title = "Usage Freq vs Satisfaction (Top 10 Universities)", x = "University", y = "Rating (1-5)") +
   coord_flip() +
   theme_minimal(base_size = 14) +
   scale_fill_manual(values = c("Frequency" = "#00A0B0", "Satisfaction" = "#E84A5F"))
@@ -64,7 +66,7 @@ plot_guide_level <- ggplot(guidance_level_data, aes(x = Level, y = Score, fill =
 print(plot_guide_level)
 
 # --- Plot 7: Usage Freq vs Satisfaction (Line/Scatter Plot) ---
-plot_guide_usage_sat <- ggplot(guidance_usage_sat_data, aes(x = Usage.Freq, y = Avg.Satisfaction)) +
+plot_guide_usage_sat <- ggplot(guidance_usage_sat_data, aes(x = Guidance_Usage_Freq, y = Avg.Satisfaction)) +
   geom_line(color = "red", size = 1) +
   geom_point(color = "#00A0B0", size = 3) +
   geom_text_repel(aes(label = Usage.Label), box.padding = 0.5) +
