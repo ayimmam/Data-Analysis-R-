@@ -1,3 +1,5 @@
+# 06_qualitative_analysis.R
+
 library(wordcloud)
 library(RColorBrewer)
 
