@@ -1,0 +1,24 @@
+---
+title: "University Career Guidance - Interactive Analysis"
+output:
+  html_notebook: default
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    code_folding: hide
+---
+
+This R Notebook provides an interactive analysis of the survey data from 471 university students in Ethiopia. It explores demographics, career exposure, and satisfaction with guidance services.
+
+You can click "Code" buttons to show or hide the underlying R code for each section.
+
+```{r setup, include=FALSE}
+# This chunk sets up our environment
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(plotly)     # For interactive plots
+library(DT)         # For interactive tables
